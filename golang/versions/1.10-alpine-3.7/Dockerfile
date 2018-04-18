@@ -1,4 +1,4 @@
-FROM bkbabydp/alpine
+FROM bkbabydp/alpine:3.7-aliyun
 
 RUN apk add --no-cache ca-certificates
 
