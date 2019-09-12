@@ -30,17 +30,14 @@ RUN apk update && \
     mbedtls-dev \
     pcre-dev && \
     git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/repo && \
-    && cd /tmp/repo \
-    && ./autogen.sh \
-    && ./configure --prefix=/usr --disable-documentation \
-    && make install \
-    && apk del .build-deps \
-    && apk add --no-cache \
-    rng-tools \
-    $(scanelf --needed --nobanner /usr/bin/ss-* \
-    | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-    | sort -u) \
-    && rm -rf /tmp/repo
+    cd /tmp/repo && \
+    ./autogen.sh && \
+    ./configure --prefix=/usr --disable-documentation && \
+    make install && \
+    apk del .build-deps && \
+    apk add --no-cache && \
+    rng-tools $(scanelf --needed --nobanner /usr/bin/ss-* | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' | sort -u) && \
+    rm -rf /tmp/repo
 
 #
 # Dockerfile for main
