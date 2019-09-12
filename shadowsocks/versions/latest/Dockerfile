@@ -31,6 +31,7 @@ RUN apk update && \
     pcre-dev && \
     git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/repo && \
     cd /tmp/repo && \
+    git submodule update && \
     ./autogen.sh && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
