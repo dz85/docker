@@ -5,6 +5,7 @@ import fs from "node:fs";
 
 const getMatrix = async (githubWorkspace) => {
   const root = path.resolve(githubWorkspace);
+  const matrix1 = await fs.promises.readdir(root, { recursive: true });
   const matrix = (
     await fs.promises.readdir(root, { withFileTypes: true, recursive: true })
   )
@@ -20,7 +21,12 @@ const getMatrix = async (githubWorkspace) => {
         tag: `${part[2]}:${part[0]}`,
       };
     });
-  console.info({ githubWorkspace: root, matrix, cd: path.resolve("./") });
+  console.info({
+    githubWorkspace: root,
+    matrix,
+    matrix1,
+    cd: path.resolve("./"),
+  });
   return matrix;
 };
 
