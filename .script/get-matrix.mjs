@@ -4,11 +4,9 @@ import path from "node:path";
 import fs from "node:fs";
 
 const getMatrix = async (githubWorkspace) => {
+  const root = path.resolve(githubWorkspace);
   const matrix = (
-    await fs.promises.readdir(githubWorkspace, {
-      withFileTypes: true,
-      recursive: true,
-    })
+    await fs.promises.readdir(root, { withFileTypes: true, recursive: true })
   )
     .filter(
       (dirent) =>
@@ -16,13 +14,13 @@ const getMatrix = async (githubWorkspace) => {
         dirent.name.toUpperCase() === "Dockerfile".toUpperCase()
     )
     .map((dirent) => {
-      const part = dirent.path.split(path.sep);
+      const part = dirent.path.split(path.sep).reverse();
       return {
         dockerfile: path.join(dirent.path, dirent.name),
-        tag: `${part[0]}:${part[2]}`,
+        tag: `${part[2]}:${part[0]}`,
       };
     });
-  console.info({ githubWorkspace, matrix });
+  console.info({ githubWorkspace: root, matrix });
   return matrix;
 };
 
