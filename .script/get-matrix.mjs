@@ -5,7 +5,10 @@ import fs from "node:fs";
 
 const getMatrix = async (githubWorkspace) => {
   const root = path.resolve(githubWorkspace);
-  const matrix1 = await fs.promises.readdir(root, { recursive: true });
+  const matrix1 = await fs.promises.readdir(root, {
+    withFileTypes: true,
+    recursive: true,
+  });
   const matrix = (
     await fs.promises.readdir(root, { withFileTypes: true, recursive: true })
   )
