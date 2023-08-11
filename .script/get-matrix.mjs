@@ -20,7 +20,7 @@ const getMatrix = async (githubWorkspace) => {
         tag: `${part[2]}:${part[0]}`,
       };
     });
-  console.info({ githubWorkspace: root, matrix });
+  console.info({ githubWorkspace: root, matrix, cd: path.resolve("./") });
   return matrix;
 };
 
