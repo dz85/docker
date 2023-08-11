@@ -5,5 +5,5 @@ git:
 node:
 	node .script/get-matrix.mjs
 test:
-	docker run --rm --name=test -idt dz85/node:18-alpine-gitlab
-	docker exec -it test sh
+	docker run --rm --name=test -it dz85/node:18-alpine-gitlab sh
+
