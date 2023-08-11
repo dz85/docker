@@ -1,4 +1,6 @@
-// `actions/github-script@v6` don't support npm in this file
+// `actions/github-script@v6` doesn't support npm in this file
+// `github-actions` supports only Node 16 so far
+// @see https://docs.github.com/zh/actions/creating-actions/metadata-syntax-for-github-actions#runs
 
 import path from "node:path";
 import fs from "node:fs";
